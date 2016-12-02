@@ -1,16 +1,19 @@
+package io.tripled.adventofcode.dayone;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class LocateHqTest {
+public class HeadQuartersLocatorTest {
 
-  private HQLocator locator;
+
+  private HeadQuartersLocator locator;
 
   @Before
   public void setUp() {
-    locator = new HQLocator();
+    locator = new HeadQuartersLocator();
   }
 
   @Test
@@ -125,6 +128,6 @@ public class LocateHqTest {
 
     assertThat(position, equalTo(Position.of(4, 4, Heading.SOUTH)));
     assertThat(locator.getDistanceFromStart(), equalTo(8));
-    assertThat(locator.getFirstDuplicate().distance(), equalTo(4));
+    assertThat(locator.getDistanceForFirstDuplicate(), equalTo(4));
   }
 }

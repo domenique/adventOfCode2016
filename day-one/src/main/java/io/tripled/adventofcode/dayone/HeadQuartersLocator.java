@@ -1,13 +1,15 @@
+package io.tripled.adventofcode.dayone;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class HQLocator {
+class HeadQuartersLocator {
 
   private List<Position> previousPositions;
   private Position currentPosition;
   private Position firstDuplicate;
 
-  HQLocator() {
+  HeadQuartersLocator() {
     previousPositions = new ArrayList<>();
     currentPosition = Position.of(0, 0, Heading.NORTH);
   }
@@ -18,7 +20,7 @@ class HQLocator {
 
   void move(Movement movement) {
     List<Position> visitedPositions = currentPosition.move(movement);
-    currentPosition = visitedPositions.get(visitedPositions.size() -1 );
+    currentPosition = visitedPositions.get(visitedPositions.size() - 1);
 
     for (Position cur : visitedPositions) {
       if (firstDuplicate == null && previousPositions.contains(cur)) {
@@ -29,11 +31,10 @@ class HQLocator {
   }
 
   int getDistanceFromStart() {
-    return currentPosition.distance();
+    return currentPosition.distanceFromStart();
   }
 
-  Position getFirstDuplicate() {
-    return firstDuplicate;
+  int getDistanceForFirstDuplicate() {
+    return firstDuplicate.distanceFromStart();
   }
-
 }

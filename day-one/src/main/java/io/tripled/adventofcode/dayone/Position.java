@@ -1,3 +1,5 @@
+package io.tripled.adventofcode.dayone;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +29,6 @@ public class Position {
       default:
         throw new IllegalArgumentException("Unknown direction provided.");
     }
-
   }
 
   private List<Position> headLeft(int steps) {
@@ -71,11 +72,15 @@ public class Position {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     Position position = (Position) o;
     return x == position.x &&
-        y == position.y;
+           y == position.y;
   }
 
   @Override
@@ -86,14 +91,13 @@ public class Position {
   @Override
   public String toString() {
     return "Position{" +
-        "x=" + x +
-        ", y=" + y +
-        ", heading=" + heading +
-        '}';
+           "x=" + x +
+           ", y=" + y +
+           ", heading=" + heading +
+           '}';
   }
 
-  public int distance() {
+  public int distanceFromStart() {
     return Math.abs(x) + Math.abs(y);
-
   }
 }

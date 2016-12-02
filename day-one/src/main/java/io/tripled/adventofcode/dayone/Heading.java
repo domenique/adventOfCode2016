@@ -1,3 +1,5 @@
+package io.tripled.adventofcode.dayone;
+
 enum Heading {
   NORTH,
   EAST,

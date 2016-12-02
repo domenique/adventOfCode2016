@@ -1,3 +1,5 @@
+package io.tripled.adventofcode.dayone;
+
 public enum Direction {
   LEFT("L"),
   RIGHT("R");
