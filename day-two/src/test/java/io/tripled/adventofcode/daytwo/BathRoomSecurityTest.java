@@ -19,7 +19,7 @@ public class BathRoomSecurityTest {
   public void startsAtFive() {
     Digit digit = controller.getCurrentKey();
 
-    assertThat(digit, equalTo(new Digit(5)));
+    assertThat(digit, equalTo(new Digit('5')));
   }
 
   @Test
@@ -28,7 +28,7 @@ public class BathRoomSecurityTest {
 
     Digit currentKey = controller.getCurrentKey();
 
-    assertThat(currentKey, equalTo(new Digit(2)));
+    assertThat(currentKey, equalTo(new Digit('5')));
   }
 
   @Test
@@ -37,7 +37,7 @@ public class BathRoomSecurityTest {
 
     Digit currentKey = controller.getCurrentKey();
 
-    assertThat(currentKey, equalTo(new Digit(6)));
+    assertThat(currentKey, equalTo(new Digit('6')));
   }
 
   @Test
@@ -46,7 +46,7 @@ public class BathRoomSecurityTest {
 
     Digit currentKey = controller.getCurrentKey();
 
-    assertThat(currentKey, equalTo(new Digit(8)));
+    assertThat(currentKey, equalTo(new Digit('5')));
   }
 
   @Test
@@ -55,7 +55,7 @@ public class BathRoomSecurityTest {
 
     Digit currentKey = controller.getCurrentKey();
 
-    assertThat(currentKey, equalTo(new Digit(4)));
+    assertThat(currentKey, equalTo(new Digit('5')));
   }
 
   @Test
@@ -64,7 +64,7 @@ public class BathRoomSecurityTest {
 
     Digit currentKey = controller.getCurrentKey();
 
-    assertThat(currentKey, equalTo(new Digit(2)));
+    assertThat(currentKey, equalTo(new Digit('5')));
   }
 
   @Test
@@ -73,7 +73,7 @@ public class BathRoomSecurityTest {
 
     Digit currentKey = controller.getCurrentKey();
 
-    assertThat(currentKey, equalTo(new Digit(6)));
+    assertThat(currentKey, equalTo(new Digit('7')));
   }
 
   @Test
@@ -82,7 +82,7 @@ public class BathRoomSecurityTest {
 
     Digit currentKey = controller.getCurrentKey();
 
-    assertThat(currentKey, equalTo(new Digit(8)));
+    assertThat(currentKey, equalTo(new Digit('5')));
   }
 
   @Test
@@ -91,7 +91,7 @@ public class BathRoomSecurityTest {
 
     Digit currentKey = controller.getCurrentKey();
 
-    assertThat(currentKey, equalTo(new Digit(4)));
+    assertThat(currentKey, equalTo(new Digit('5')));
   }
 
   @Test
@@ -105,10 +105,10 @@ public class BathRoomSecurityTest {
     controller.move("UUUUD");
     Digit fourthKey = controller.getCurrentKey();
 
-
-    assertThat(firstKey, equalTo(new Digit(1)));
-    assertThat(secondKey, equalTo(new Digit(9)));
-    assertThat(thirdKey, equalTo(new Digit(8)));
-    assertThat(fourthKey, equalTo(new Digit(5)));
+//    5DB3
+    assertThat(firstKey, equalTo(new Digit('5')));
+    assertThat(secondKey, equalTo(new Digit('D')));
+    assertThat(thirdKey, equalTo(new Digit('B')));
+    assertThat(fourthKey, equalTo(new Digit('3')));
   }
 }

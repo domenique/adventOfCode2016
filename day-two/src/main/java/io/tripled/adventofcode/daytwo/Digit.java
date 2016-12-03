@@ -4,17 +4,17 @@ import java.util.Objects;
 
 class Digit {
 
-  private final int value;
+  private final char value;
   private int y;
   private int x;
 
-  Digit(int value, int x, int y) {
+  Digit(char value, int x, int y) {
     this.value = value;
     this.x = x;
     this.y = y;
   }
 
-  Digit(int value) {
+  Digit(char value) {
     this.value = value;
   }
 
@@ -38,11 +38,11 @@ class Digit {
         '}';
   }
 
-  public int getY() {
+  int getY() {
     return y;
   }
 
-  public int getX() {
+  int getX() {
     return x;
   }
 }
