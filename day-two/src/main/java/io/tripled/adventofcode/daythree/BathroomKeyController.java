@@ -1,4 +1,4 @@
-package io.tripled.adventofcode.daytwo;
+package io.tripled.adventofcode.daythree;
 
 class BathroomKeyController {
 
