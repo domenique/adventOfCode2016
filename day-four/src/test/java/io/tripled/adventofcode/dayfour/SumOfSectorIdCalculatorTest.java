@@ -56,6 +56,13 @@ public class SumOfSectorIdCalculatorTest {
     SecurityCode code = SecurityCode.of("aaaaa-bbb-z-y-x-123[baxyz]");
 
     assertThat(code.isValidChecksum(), is(false));
+  }
+
+  @Test
+  public void canDecryptTheName() throws Exception {
+    SecurityCode code = SecurityCode.of("qzmt-zixmtkozy-ivhz-343[asdqq]");
+
+    assertThat(code.decrypt(), equalTo("very encrypted name"));
 
   }
 }

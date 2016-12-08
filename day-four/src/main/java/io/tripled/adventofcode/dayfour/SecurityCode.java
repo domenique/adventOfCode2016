@@ -59,6 +59,19 @@ class SecurityCode {
     return isValid;
   }
 
+  String decrypt() {
+    String result = "";
+    for (char c : encryptedName.toCharArray()) {
+      if (c == '-') {
+        result += ' ';
+      } else {
+        result += Character.toString((char) (((c - 'a' + sectorId) % 26) + 'a'));
+      }
+    }
+
+    return result;
+  }
+
   @Override
   public String toString() {
     return "SecurityCode{" +

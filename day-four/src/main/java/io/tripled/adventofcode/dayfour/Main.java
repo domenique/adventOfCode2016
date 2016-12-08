@@ -14,6 +14,7 @@ public class Main {
       Integer sumOfCorrectRooms = reader.lines()
           .map(SecurityCode::of)
           .filter(SecurityCode::isValidChecksum)
+          .peek(code -> System.out.println(code.getSectorId() + " : " + code.decrypt()))
           .map(SecurityCode::getSectorId)
           .mapToInt(Integer::intValue).sum();
       System.out.println("Sum of real rooms: " + sumOfCorrectRooms);
