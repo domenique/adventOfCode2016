@@ -1,10 +1,14 @@
 package io.tripled.adventofcode.dayfour;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 class SecurityCode {
 
@@ -21,7 +25,7 @@ class SecurityCode {
     throw new IllegalArgumentException("Not a security Code");
   }
 
-  SecurityCode(String encryptedName, int sectorId, String checksum) {
+  private SecurityCode(String encryptedName, int sectorId, String checksum) {
     this.encryptedName = encryptedName;
     this.sectorId = sectorId;
     this.checksum = checksum;
@@ -40,22 +44,21 @@ class SecurityCode {
   }
 
   boolean isValidChecksum() {
-    List<CharacterCount> counted = encryptedName.replaceAll("-", "").chars()
+    StringBuilder builder = new StringBuilder();
+    List<CharacterCount> characterCounts = encryptedName.replaceAll("-", "").chars()
         .mapToObj(c -> (char) c)
-        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+        .collect(toMapOfCharacterWithCount())
         .entrySet().stream()
         .map(CharacterCount::new)
         .sorted()
-        .collect(Collectors.toList());
+        .collect(toList());
 
-    StringBuilder builder = new StringBuilder();
-    counted.stream()
+    characterCounts.stream()
         .limit(5)
         .map(CharacterCount::getCharacter)
         .forEach(builder::append);
 
     boolean isValid = checksum.equals(builder.toString());
-    System.out.println(String.format("Checksum: %s <> %s == %s", checksum, builder.toString(), isValid));
     return isValid;
   }
 
@@ -72,12 +75,18 @@ class SecurityCode {
     return result;
   }
 
+  private Collector<Character, ?, Map<Character, Long>> toMapOfCharacterWithCount() {
+    return Collectors.groupingBy(Function.identity(), Collectors.counting());
+  }
+
   @Override
   public String toString() {
     return "SecurityCode{" +
-           "encryptedName='" + encryptedName + '\'' +
-           ", sectorId=" + sectorId +
-           ", checksum='" + checksum + '\'' +
-           '}';
+        "encryptedName='" + encryptedName + '\'' +
+        ", sectorId=" + sectorId +
+        ", checksum='" + checksum + '\'' +
+        ", isValid='" + isValidChecksum() + '\'' +
+        ", decrypted='" + decrypt() + '\'' +
+        '}';
   }
 }
