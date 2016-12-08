@@ -12,7 +12,7 @@ public class InputReaderTest {
 
   @Test
   public void handlesMissingFiles() throws IOException {
-    InputReader input = new InputReader("nonexisting.txt");
+    SimpleInputReader input = new SimpleInputReader("nonexisting.txt");
 
     CandidateTriangle triagle = input.read();
 
@@ -21,7 +21,7 @@ public class InputReaderTest {
 
   @Test
   public void canReadAnEmptyFile() throws IOException {
-    InputReader input = new InputReader("empty-file.txt");
+    SimpleInputReader input = new SimpleInputReader("empty-file.txt");
 
     CandidateTriangle triagle = input.read();
 
@@ -30,7 +30,7 @@ public class InputReaderTest {
 
   @Test
   public void canReadOneInput() throws IOException {
-    InputReader input = new InputReader("one-line.txt");
+    SimpleInputReader input = new SimpleInputReader("one-line.txt");
 
     CandidateTriangle triagle = input.read();
 
