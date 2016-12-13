@@ -9,13 +9,45 @@ import java.io.InputStreamReader;
 class NoiseCanceller implements Closeable {
 
   private BufferedReader reader;
+  private Columns columns;
 
-  NoiseCanceller(String fileName) throws IOException {
+  NoiseCanceller(String fileName, int columnSize) throws IOException {
     this.reader = openFile(fileName);
+    this.columns = new Columns(columnSize);
+
   }
 
-  String decode() throws IOException {
-    return reader.readLine();
+  String decodeWithHigestCountedChars() throws IOException {
+    readIntoColumns();
+
+    if (!columns.isEmpty()) {
+      return columns.createStringWithHighestCountedCharPerColumn();
+    } else {
+      return null;
+    }
+  }
+
+  String decodeWithLowestCountedChars() throws IOException {
+    readIntoColumns();
+
+    if (!columns.isEmpty()) {
+      return columns.createStringWithLowestCountedCharPerColumn();
+    } else {
+      return null;
+    }
+  }
+
+  private void readIntoColumns() throws IOException {
+    String line = reader.readLine();
+
+    while (line != null) {
+      char[] chars = line.toCharArray();
+      for (int i = 0; i < chars.length; i++) {
+        columns.addCharAtColumn(chars[i], i);
+      }
+
+      line = reader.readLine();
+    }
   }
 
   private BufferedReader openFile(String fileName) throws IOException {
