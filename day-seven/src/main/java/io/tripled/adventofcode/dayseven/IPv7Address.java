@@ -10,15 +10,47 @@ class IPv7Address {
   IPv7Address(String input) {
     String[] splitted = input.split("[\\[|\\]]");
     for (int i = 0; i < splitted.length; i++) {
-      labels.add(new IPv7Label(splitted[i], i % 2 == 0));
+      labels.add(new IPv7Label(splitted[i], i % 2 != 0));
     }
   }
 
-  boolean isValid() {
-    return true;
+  boolean supportsTls() {
+    boolean foundAbba = false;
+    boolean foundAbbaInHyperNetLabel = false;
+    for (IPv7Label label : labels) {
+      if (label.isHyperNet() && label.containsAbba()) {
+        foundAbbaInHyperNetLabel = true;
+      }
+      if (!label.isHyperNet() && label.containsAbba()) {
+        foundAbba = true;
+      }
+    }
+    return foundAbba && !foundAbbaInHyperNetLabel;
   }
 
-  List<IPv7Label> getLabels() {
-    return labels;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    IPv7Address that = (IPv7Address) o;
+
+    return labels != null ? labels.equals(that.labels) : that.labels == null;
+  }
+
+  @Override
+  public int hashCode() {
+    return labels != null ? labels.hashCode() : 0;
+  }
+
+  @Override
+  public String toString() {
+    return "IPv7Address{" +
+           "labels=" + labels +
+           '}';
   }
 }
