@@ -1,4 +1,4 @@
-package io.tripled.adventofcode.daythree;
+package io.tripled.adventofcode.daytwo;
 
 import java.util.stream.Stream;
 

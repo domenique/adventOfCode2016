@@ -1,11 +1,13 @@
 package io.tripled.adventofcode.dayfive;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertThat;
 
+@Ignore("Slow Tests")
 public class SpecialHashCodeGeneratorTest {
   @Test
   public void nextHashReturnsTheNextHash() throws Exception {

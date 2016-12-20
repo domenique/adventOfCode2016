@@ -1,10 +1,12 @@
 package io.tripled.adventofcode.dayfive;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+@Ignore("Slow Tests")
 public class SecurityDoorTest {
 
   @Test

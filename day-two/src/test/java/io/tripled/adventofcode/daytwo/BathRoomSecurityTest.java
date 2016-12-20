@@ -1,5 +1,7 @@
-package io.tripled.adventofcode.daythree;
+package io.tripled.adventofcode.daytwo;
 
+import io.tripled.adventofcode.daytwo.BathroomKeyController;
+import io.tripled.adventofcode.daytwo.Digit;
 import org.junit.Before;
 import org.junit.Test;
 
